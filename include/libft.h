@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:47:08 by asanotomoki       #+#    #+#             */
-/*   Updated: 2022/07/27 09:54:35 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 02:08:09 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
-# include <string.h>
 
 typedef struct s_list
 {

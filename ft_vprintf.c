@@ -6,74 +6,59 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:57:08 by test              #+#    #+#             */
-/*   Updated: 2022/07/27 12:40:26 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 02:27:32 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-void	ft_putnbr_recursive(unsigned long long int nbr, char *base, size_t base_len)
+ssize_t ft_putchar(int c, ssize_t len)
 {
-	if (nbr == 0)
-		return ;
-	ft_putnbr_recursive(nbr / base_len, base, base_len);
-	ft_putchar_fd(base[nbr % base_len], 1);
+	len = ft_intmaxch(len, 1);
+	if (len == -1)
+		return (-1);
+	ft_putchar_fd(c, 1);
+	return (len);	
 }
 
-void	ft_putnbr_base(unsigned long int nbr, char *base, size_t base_len)
+int	ft_putformat(const char *fmt, va_list *args, ssize_t len)
 {
-	if (nbr == 0)
-	{
-		ft_putchar_fd('0', 1);
-	}	
-	ft_putnbr_recursive(nbr, base, base_len);
-}
-
-void	ft_putstr(char *str)
-{
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	else
-		ft_putstr_fd(str, 1);
-}
-
-void	ft_putargs(const char *fmt, va_list *args)
-{
-
 	if (*fmt == 'c')
-		ft_putchar_fd(va_arg(*args, int), 1);
+		len = ft_putchar(va_arg(*args, int), len);
 	else if (*fmt == 's')
-		ft_putstr(va_arg(*args, char *));
+		len = ft_putstr(va_arg(*args, char *), len);
 	else if (*fmt == 'p')
-	{
-		write(1, "0x", 2);
-		ft_putnbr_base(va_arg(*args, unsigned long int), "0123456789abcdef", 16);
-	}
+		len = ft_putptr(va_arg(*args, unsigned long int), len);
 	else if (*fmt == 'd' || *fmt == 'i')
-		ft_putnbr_fd(va_arg(*args, int), 1);
+		len = ft_putnbr(va_arg(*args, int), len);
 	else if (*fmt == 'u')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789", 10);
+		len = ft_putnbr_base(va_arg(*args, unsigned int), 10, len, *fmt);
 	else if (*fmt == 'x')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef", 16);
+		len = ft_putnbr_base(va_arg(*args, unsigned int), 16, len, *fmt);
 	else if (*fmt == 'X')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF", 16);
+		len = ft_putnbr_base(va_arg(*args, unsigned int), 16, len, *fmt);
 	else if (*fmt == '%')
-		ft_putchar_fd('%', 1);
+		len = ft_putchar('%', len);
+	return (len);
 }
 
-int	ft_vprintf(const char *fmt, va_list *args)
+ssize_t	ft_vprintf(const char *fmt, va_list *args)
 {
+	ssize_t	len;
+
+	len = 0;
 	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
 			fmt++;
-			ft_putargs(fmt, args);
+			len = ft_putformat(fmt, args, len);
 		}
 		else
-			ft_putchar_fd(*fmt, 1);
+			len = ft_putchar(*fmt, len);
+		if (len == -1)
+			return (-1);
 		fmt++;
 	}
-	return (0);
+	return (len);
 }

@@ -49,6 +49,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I ../include
 AR = ar
 ARFLAFS = rc
+TARGET = ../include
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)

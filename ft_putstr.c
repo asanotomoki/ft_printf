@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 16:38:30 by test              #+#    #+#             */
-/*   Updated: 2022/07/28 01:48:55 by test             ###   ########.fr       */
+/*   Created: 2022/07/27 22:54:16 by test              #+#    #+#             */
+/*   Updated: 2022/07/28 01:26:00 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *fmt, ...)
+ssize_t	ft_putstr(char *str, ssize_t len)
 {
-	va_list	args;
-	ssize_t	len;
-
-	len = 0;
-	va_start(args, fmt);
-	len = ft_vprintf(fmt, &args);
-	va_end(args);
+	len = ft_intmaxch(len, ft_printf_strlen(str));
+	if (len == -1)
+		return (-1);
+	if (!str)
+		ft_putstr_fd("(null)", 1);
+	else
+		ft_putstr_fd(str, 1);
 	return (len);
 }

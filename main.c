@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:14:06 by test              #+#    #+#             */
-/*   Updated: 2022/07/27 10:46:47 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 02:26:33 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 int main() {
 	char *null_str;
 
-	null_str = "test";
-	printf(" : %d\n", ft_printf("%c %s %p", 'A', null_str, null_str ));
-	printf(" : %d\n", printf("%c %s %p", 'A', null_str, null_str));
+	null_str = "abcdef";
+	printf(" : %d\n", ft_printf("%s %p", null_str, null_str));
+	printf(" : %d\n", printf("%s %p", null_str, null_str));
 	return (0);
 }
