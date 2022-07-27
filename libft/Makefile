@@ -41,7 +41,9 @@ ft_lstadd_back.c \
 ft_lstdelone.c \
 ft_lstclear.c \
 ft_lstiter.c \
-ft_lstmap.c 
+ft_lstmap.c \
+ft_get_digit.c
+
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I ../include

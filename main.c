@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:14:06 by test              #+#    #+#             */
-/*   Updated: 2022/07/26 22:43:02 by test             ###   ########.fr       */
+/*   Updated: 2022/07/27 10:29:07 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <stdio.h>
 
 int main() {
-	int i = 0;
-	printf(" %d \n", ft_printf("ft %s %s %s ", "test", "te", "st"));
-	printf(" %d \n", printf("or %s %s %s ", "test", "te", "st"));
+	char *null_str;
+
+	null_str = "test";
+	printf(" : %d\n", ft_printf("%c %s %p", '\0', null_str, null_str ));
+	printf(" : %d\n", printf("%c %s %p", '\0', null_str, null_str));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:01:59 by asanotomoki       #+#    #+#             */
-/*   Updated: 2022/07/26 15:56:00 by test             ###   ########.fr       */
+/*   Updated: 2022/07/27 04:21:46 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(*s, fd);
 		s++;
 	}
-	ft_putchar_fd(*s, fd);
 }

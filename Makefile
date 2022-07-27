@@ -29,7 +29,7 @@ fclean:	clean
 re: fclean all
 
 test: all
-	$(CC) $(CFLAGS) main.c $(NAME)
+	$(CC) $(CFLAGS) main.c $(NAME)  -fsanitize=address -g
 	./a.out
 
 .PHONY: all bonus fclean clean re test
