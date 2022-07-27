@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:12:49 by test              #+#    #+#             */
-/*   Updated: 2022/07/27 10:37:31 by test             ###   ########.fr       */
+/*   Updated: 2022/07/27 13:03:13 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ size_t	ft_getargs_size(const char *fmt, va_list *s_args)
 	len = 0;
 	if (*fmt == 'c')
 		len = 1;
-	else if (*fmt == 's')
+	else if (*fmt == 's') {
+		// printf("%s", va_arg(*s_args, char *));s
 		len = ft_getstr_size(va_arg(*s_args, char *));
+	}
 	else if (*fmt == 'p')
 	{
 		len = 2;
