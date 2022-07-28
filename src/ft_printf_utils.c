@@ -6,19 +6,18 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 22:36:14 by test              #+#    #+#             */
-/*   Updated: 2022/07/28 02:36:00 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 16:21:17 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t ft_intmaxch(ssize_t len, size_t c_len)
+ssize_t	ft_intmaxch(ssize_t len, size_t c_len)
 {
 	if (c_len + len > INT_MAX)
 		return (-1);
 	return (len + c_len);
 }
-
 
 size_t	ft_printf_strlen(const char *str)
 {
@@ -61,7 +60,7 @@ size_t	ft_getnbr_base(unsigned int nbr, int base_len)
 	return (len);
 }
 
-size_t ft_getnbr_digit(int nbr)
+size_t	ft_getnbr_digit(int nbr)
 {
 	size_t	i;
 

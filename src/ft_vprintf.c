@@ -6,19 +6,19 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:57:08 by test              #+#    #+#             */
-/*   Updated: 2022/07/28 02:27:32 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 16:23:05 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t ft_putchar(int c, ssize_t len)
+ssize_t	ft_putchar(int c, ssize_t len)
 {
 	len = ft_intmaxch(len, 1);
 	if (len == -1)
 		return (-1);
 	ft_putchar_fd(c, 1);
-	return (len);	
+	return (len);
 }
 
 int	ft_putformat(const char *fmt, va_list *args, ssize_t len)

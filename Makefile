@@ -1,39 +1,43 @@
 NAME	=	libftprintf.a
-INCLUDE = ./include
 LIBFT = ./libft
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -I $(INCLUDE)
-SRCS	=	ft_printf.c \
-			ft_vprintf.c \
-			ft_putstr.c \
-			ft_putnbr.c \
-			ft_putptr.c \
-			ft_printf_utils.c
-
-OBJS	=	$(SRCS:.c=.o)
+COMPILER  = cc
+CFLAGS    = -Wall -Wextra -Werror
+INCLUDE   = -I ./include
+SRCDIR    = ./src
 AR = ar
-ARFLAFS = rcs
+ARFLAFS = -rcs
 RM = rm -f
-TARGET = ./include
+SOURCES	=	./src/ft_printf.c \
+			./src/ft_vprintf.c \
+			./src/ft_putstr.c \
+			./src/ft_putnbr.c \
+			./src/ft_putptr.c \
+			./src/ft_printf_utils.c
 
-all: $(NAME) 
+OBJDIR    = ./obj
+OBJECTS   = $(addprefix $(OBJDIR)/, $(notdir $(SOURCES:.c=.o)))
+DEPENDS   = $(OBJECTS:.o=.d)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJECTS) 
 	make -C $(LIBFT)
 	cp libft/libft.a .
 	mv libft.a $(NAME)
-	$(AR) $(ARFLAFS) $(NAME) $(OBJS)
+	$(AR) $(ARFLAFS) $(NAME) $(OBJECTS)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	-mkdir -p $(OBJDIR)
+	$(COMPILER) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+
+all: clean $(NAME)
 
 clean:
-	make clean -C LIBFT
-	$(RM) $(OBJS)
+	make clean -C $(LIBFT)
+	$(RM) $(OBJECTS)
+	rm -rf $(OBJDIR)
 
 fclean:	clean
-	make fclean -C LIBFT
 	$(RM) $(NAME)
+	$(RM) $(LIBFT)/libft.a
 
 re: fclean all
 

@@ -1,5 +1,12 @@
-NAME = libft.a
-SRCS = ft_atoi.c \
+NAME	=	libft.a
+COMPILER  = cc
+CFLAGS    = -Wall -Wextra -Werror
+INCLUDE   = -I ../include
+SRCDIR    = ./
+AR = ar
+ARFLAFS = -rcs
+RM = rm -f
+SOURCES	= ft_atoi.c \
 ft_bzero.c \
 ft_calloc.c \
 ft_isalnum.c \
@@ -43,28 +50,25 @@ ft_lstclear.c \
 ft_lstiter.c \
 ft_lstmap.c \
 ft_get_digit.c
+OBJDIR    = ./obj
+OBJECTS   = $(addprefix $(OBJDIR)/, $(notdir $(SOURCES:.c=.o)))
+DEPENDS   = $(OBJECTS:.o=.d)
 
-OBJS = $(SRCS:.c=.o)
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I ../include
-AR = ar
-ARFLAFS = rc
-TARGET = ../include
+$(NAME): $(OBJECTS) 
+	$(AR) $(ARFLAFS) $(NAME) $(OBJECTS)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	-mkdir -p $(OBJDIR)
+	$(COMPILER) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAFS) $(NAME) $(OBJS)
+all: clean $(NAME)
 
 clean:
-	$(RM) $(OBJS) 
+	$(RM) $(OBJECTS)
 
-fclean: clean
-	$(RM) $(NAME) 
+fclean:	clean
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus fclean clean re

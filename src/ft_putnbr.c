@@ -6,11 +6,11 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 22:03:23 by test              #+#    #+#             */
-/*   Updated: 2022/07/28 02:11:12 by test             ###   ########.fr       */
+/*   Updated: 2022/07/28 16:22:16 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putnbr_recursive(unsigned int nbr, int base_len, char sp)
 {
@@ -22,15 +22,14 @@ void	ft_putnbr_recursive(unsigned int nbr, int base_len, char sp)
 	else
 	{
 		if (sp == 'X')
-			ft_putchar_fd((nbr % base_len) -10 + 'A', 1);
+			ft_putchar_fd((nbr % base_len) - 10 + 'A', 1);
 		else
-			ft_putchar_fd((nbr % base_len) -10 + 'a', 1);
+			ft_putchar_fd((nbr % base_len) - 10 + 'a', 1);
 	}
 }
 
 ssize_t	ft_putnbr_base(unsigned int nbr, int base_len, ssize_t len, char sp)
 {
-
 	len = ft_intmaxch(len, ft_getnbr_base(nbr, base_len));
 	if (len == -1)
 		return (-1);
